@@ -173,7 +173,7 @@ cat final_flag.txt`
 
 <br>
 
-### RAW NOTES TAKEN ALONG THE WAY:
+### RAW NOTES TAKEN ALONG THE WAY USING CHERRY TREE (LINUX):
 
 <img src="https://i.imgur.com/v4y4oYX.png" height="50%" width="50%" alt="DC1 NOTES"/>
 <img src="https://i.imgur.com/ahb61J7.png" height="50%" width="50%" alt="DC1 NOTES"/>
