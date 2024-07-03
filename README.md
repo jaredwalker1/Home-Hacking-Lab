@@ -74,7 +74,7 @@ run`
 Copy code
 find / -name flag1.txt
 cat /path/to/flag1.txt`
-Flag 1 Content: "Every good CMS needs a config file."
+- Flag 1 Content: "Every good CMS needs a config file."
 
 ### Flag 2: Database Enumeration and Exploitation
 Objective: Identify and capture the second flag by exploiting the database.
@@ -99,7 +99,7 @@ show databases;
 use drupal;
 show tables;
 select * from flags;`
-Flag 2 Content: "Brute force and directory attacks aren't the only way to gain access."
+- Flag 2 Content: "Brute force and directory attacks aren't the only way to gain access."
 
 ### Flag 3: Privilege Escalation and System Enumeration
 Objective: Identify and capture the third flag by performing privilege escalation.
@@ -119,7 +119,7 @@ Once privileges are escalated, navigate the file system to find the third flag:
 `bash
 find / -name flag3.txt
 cat /path/to/flag3.txt`
-Flag 3 Content: "There's more than one way to skin a cat."
+- Flag 3 Content: "There's more than one way to skin a cat."
 
 ### Flag 4: User Enumeration and Exploitation
 Objective: Identify and capture the fourth flag by exploiting user credentials.
@@ -140,7 +140,7 @@ Navigate the user's home directory to find the fourth flag:
 `bash
 find /home -name flag4.txt
 cat /path/to/flag4.txt`
-Flag 4 Content: "You can use the same method to find or access the root flag."
+- Flag 4 Content: "You can use the same method to find or access the root flag."
 
 ### Final Flag: Root Privilege Escalation
 Objective: Identify and capture the final flag by gaining root access.
@@ -159,4 +159,4 @@ Navigate to the root directory and find the final flag:
 `bash
 cd /root
 cat final_flag.txt`
-Final Flag Content: "Well done! You have completed the DC1 challenge."
+- Final Flag Content: "Well done! You have completed the DC1 challenge."
