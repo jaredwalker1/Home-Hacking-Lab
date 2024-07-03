@@ -52,6 +52,7 @@ The objective is to exploit the DC1 VulnHub machine by identifying and capturing
 - Ensure the DC1 machine is up and running by pinging its IP address:
   ```bash
   ping 10.0.200.6
+
 Information Gathering
 Perform an nmap scan to identify open ports and services:
 bash
