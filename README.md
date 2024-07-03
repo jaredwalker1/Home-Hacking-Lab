@@ -170,3 +170,10 @@ Navigate to the root directory and find the final flag:
 cd /root
 cat final_flag.txt`
 - Final Flag Content: "Well done! You have completed the DC1 challenge."
+
+<br>
+
+## RAW NOTES TAKEN ALONG THE WAY:
+
+<img src="https://i.imgur.com/v4y4oYX.png" height="50%" width="50%" alt="DC1 NOTES"/>
+<img src="https://i.imgur.com/ahb61J7.png" height="50%" width="50%" alt="DC1 NOTES"/>
