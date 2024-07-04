@@ -7,7 +7,7 @@ This section of the home hacking lab project focuses on downloading and exploiti
 - **Virtualization Software:** VirtualBox
 - **Operating Systems:** Kali Linux, DC1 VulnHub machine
 - **Security Tools:** Metasploit, nmap, Hydra, LinPEAS, MySQL
-- **Scripting:** 
+- **Scripting:** Bash
 
 ## Environments Used
 - **Kali Linux:** Attacker Machine
